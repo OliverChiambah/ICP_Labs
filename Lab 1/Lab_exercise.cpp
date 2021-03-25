@@ -3,12 +3,12 @@
 #include<stdlib.h>
 #include<time.h>
 using namespace std;
-
+//creating a struct to use in the inverse function
 struct arrayPosition{
     int row;
     int col;
 };
-
+// Function signatures
 int linearIndx(int i, int j);
 int** createMatrix(int len);
 int** createMatrixZeroes(int len);
@@ -33,9 +33,9 @@ int main() {
     majorFunction(32);
     printf("\n");
 
-    /*printf("Working with the case when the dimension is 128x128\n");
+    printf("Working with the case when the dimension is 128x128\n");
     majorFunction(128);
-    printf("\n");*/
+    printf("\n");
 
     return 0;
 } 
@@ -59,7 +59,7 @@ int** createMatrix(int len){
     }
     return A;
 }
-
+//Creating a matrix to revert elements from the array back to their various positions.
 int** createMatrixZeroes(int len){
     int **A = new int* [len];
     for (int r= 0; r<len; r++)
@@ -72,7 +72,7 @@ int** createMatrixZeroes(int len){
     }
     return A;
 }
-
+// a function to print the original matrix
 void printMatrix(int** A, int len){
     for (int i = 0; i < len; i++){ 
         for (int j = 0; j < len; j++){ 
@@ -87,7 +87,7 @@ void printArray(int* A, int len){
         printf("%d[%-i]  ", A[i], i); 
     }
 }
-
+// Linearindex function to iterate the lower triangular section of the matrix
 int linearIndx(int row, int col){
     int sum = 0;
     for (int i = 1; i <= row; i++){
@@ -96,8 +96,9 @@ int linearIndx(int row, int col){
     sum = sum + col;
     return sum;
 }
-
+//The inverse function to revert the lower triangular matrix back to their various positions
 arrayPosition InverseIdx(int n){
+    // special case for n = 0
     if(n == 0){
         arrayPosition pos; 
         pos.row = 0;
@@ -115,7 +116,7 @@ arrayPosition InverseIdx(int n){
     pos.col = n - sum;
     return pos;
 }
-
+// A major funtion to combine all the other functions 
 void majorFunction(int size){
     //Generating the array 
     int** arr = createMatrix(size);
@@ -135,7 +136,7 @@ void majorFunction(int size){
     //print the elements in the array
     printArray(temp,y);
     printf("\n\n");
-
+    //copying the elements in the array back to various positions
     int** arr2 = createMatrixZeroes(size);
     for(int i = 0; i < y; i++){
         arrayPosition pos = InverseIdx(i);
