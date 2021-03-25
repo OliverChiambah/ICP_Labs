@@ -81,10 +81,10 @@ void printMatrix(int** A, int len){
         printf("\n");
     }
 }
-
+//printing the elements in the array with its respective indices in the brackets
 void printArray(int* A, int len){
     for(int i = 0; i < 20; i++){
-        printf("%d ", A[i]); 
+        printf("%d[%-i]  ", A[i], i); 
     }
 }
 
