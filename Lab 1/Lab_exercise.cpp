@@ -72,19 +72,35 @@ int** createMatrixZeroes(int len){
     }
     return A;
 }
-// a function to print the original matrix
+// a function to print the first 20 elements of the original matrix and their respective indices
 void printMatrix(int** A, int len){
+    for (int i = 0; i < 6; i++){ 
+        for (int j = 0; j < 5; j++){ 
+            if (A[i][j] !=0)
+            printf("A[%d][%d] = %d\n", i, j, A[i][j]);
+        }        
+       
+    }
+     printf("\n");
+}
+// A function to print the first 20 elements of the inverse of the matrix and their respective indices
+void printinverseMatrix(int** C, int len){
+    int count = 0;
     for (int i = 0; i < len; i++){ 
         for (int j = 0; j < len; j++){ 
-            printf("%4d", A[i][j]); 
-        } 
-        printf("\n");
+            if (count < 20)
+            printf("C[%d][%d] = %d\n", i, j, C[i][j]);
+            count += 1;
+        }        
+
     }
+     printf("\n");
 }
-//printing the elements in the array with its respective indices in the brackets
-void printArray(int* A, int len){
+
+//printing the first 20 elements in the array with its respective indices in the brackets
+void printArray(int* B, int len){
     for(int i = 0; i < 20; i++){
-        printf("%d[%-i]  ", A[i], i); 
+        printf("%d[%-i]  ", B[i], i); 
     }
 }
 // Linearindex function to iterate the lower triangular section of the matrix
@@ -131,6 +147,7 @@ void majorFunction(int size){
         for(int j = 0; j <= i; j++){
             int t = linearIndx(i,j);
             temp[t] = arr[i][j];
+
         }
     }
     //print the elements in the array
@@ -144,7 +161,7 @@ void majorFunction(int size){
     }
 
     //print the second matrix 
-    printMatrix(arr2, size);
+    printinverseMatrix(arr2, size);
     printf("\n\n");
 
 }
